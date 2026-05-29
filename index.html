@@ -1,0 +1,1266 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="kalirali（李慧珍）每周实习周报更新。" />
+    <title>李慧珍周报更新</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f8f7f3;
+        --paper: #ffffff;
+        --paper-soft: #fbfaf7;
+        --ink: #222622;
+        --muted: #69706a;
+        --line: #ded8cc;
+        --line-strong: #cfc6b8;
+        --sage: #3f735e;
+        --sage-soft: #e8eee8;
+        --terracotta: #b85f45;
+        --terracotta-soft: #f3e5df;
+        --blue: #4d7286;
+        --blue-soft: #e5edf0;
+        --gold: #b38a3d;
+        --shadow: 0 18px 50px rgba(48, 43, 35, 0.08);
+        --radius: 8px;
+        --max: 1220px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Noto Sans CJK SC", Arial, sans-serif;
+        line-height: 1.65;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(to right, rgba(34, 38, 34, 0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(34, 38, 34, 0.04) 1px, transparent 1px);
+        background-size: 48px 48px;
+        opacity: 0.32;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 30;
+        height: 4px;
+        width: var(--progress, 0%);
+        background: var(--terracotta);
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid rgba(222, 216, 204, 0.85);
+        background: rgba(248, 247, 243, 0.92);
+        backdrop-filter: blur(16px);
+      }
+
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 14px 28px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .brand-mark {
+        display: inline-grid;
+        width: 30px;
+        height: 30px;
+        place-items: center;
+        border: 1px solid var(--line-strong);
+        border-radius: 50%;
+        color: var(--sage);
+        font-size: 14px;
+      }
+
+      .top-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: flex-end;
+      }
+
+      .top-links a {
+        border: 1px solid transparent;
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+
+      .top-links a:hover,
+      .top-links a:focus-visible {
+        border-color: var(--line);
+        background: var(--paper);
+        color: var(--ink);
+        outline: none;
+      }
+
+      .shell {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 28px;
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 34px 28px 72px;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 82px;
+        align-self: start;
+        max-height: calc(100vh - 104px);
+        overflow: auto;
+        padding-right: 4px;
+      }
+
+      .side-panel {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: 0 12px 32px rgba(48, 43, 35, 0.05);
+        padding: 18px;
+      }
+
+      .eyebrow {
+        color: var(--sage);
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .side-title,
+      .hero-title,
+      .report-title,
+      .section-title {
+        letter-spacing: 0;
+      }
+
+      .side-title {
+        margin: 10px 0 8px;
+        font-size: 28px;
+        line-height: 1.18;
+        white-space: nowrap;
+      }
+
+      .side-copy {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .toc {
+        margin-top: 20px;
+      }
+
+      .toc-label {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .toc-list {
+        display: grid;
+        gap: 8px;
+      }
+
+      .toc-link,
+      .sub-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        border-radius: var(--radius);
+        color: var(--muted);
+        font-size: 14px;
+        padding: 9px 10px;
+      }
+
+      .toc-link:hover,
+      .toc-link:focus-visible,
+      .sub-link:hover,
+      .sub-link:focus-visible {
+        background: var(--paper-soft);
+        color: var(--ink);
+        outline: none;
+      }
+
+      .toc-link.is-active {
+        background: var(--sage-soft);
+        color: var(--sage);
+        font-weight: 700;
+      }
+
+      .toc-link span:last-child {
+        color: var(--gold);
+        font-size: 12px;
+      }
+
+      details {
+        border-top: 1px solid var(--line);
+        margin-top: 14px;
+        padding-top: 14px;
+      }
+
+      summary {
+        cursor: pointer;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+        list-style: none;
+      }
+
+      summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .sub-list {
+        display: grid;
+        gap: 4px;
+        margin-top: 8px;
+      }
+
+      .sub-link {
+        justify-content: flex-start;
+        padding: 7px 10px;
+      }
+
+      .future-list {
+        display: grid;
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .future-item {
+        border: 1px dashed var(--line-strong);
+        border-radius: var(--radius);
+        color: var(--muted);
+        font-size: 13px;
+        padding: 10px;
+      }
+
+      .content {
+        min-width: 0;
+      }
+
+      .hero {
+        border-bottom: 1px solid var(--line);
+        padding: 18px 0 28px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 340px;
+        gap: 26px;
+        align-items: end;
+      }
+
+      .hero-title {
+        margin: 12px 0 12px;
+        font-size: 46px;
+        line-height: 1.14;
+        white-space: nowrap;
+      }
+
+      .hero-copy {
+        max-width: 660px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 17px;
+      }
+
+      .snapshot {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--paper);
+      }
+
+      .snapshot div {
+        min-width: 0;
+        padding: 15px 14px;
+      }
+
+      .snapshot div + div {
+        border-left: 1px solid var(--line);
+      }
+
+      .snapshot strong {
+        display: block;
+        font-size: 26px;
+        line-height: 1;
+      }
+
+      .snapshot span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      .week-switch {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .week-tab,
+      .future-tab {
+        min-height: 42px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--paper);
+        color: var(--muted);
+        cursor: pointer;
+        padding: 8px 15px;
+        transition:
+          transform 160ms ease,
+          border-color 160ms ease,
+          background 160ms ease,
+          color 160ms ease;
+      }
+
+      .week-tab:hover,
+      .week-tab:focus-visible {
+        transform: translateY(-1px);
+        border-color: var(--sage);
+        color: var(--ink);
+        outline: none;
+      }
+
+      .week-tab[aria-selected="true"] {
+        border-color: var(--sage);
+        background: var(--sage);
+        color: #fff;
+      }
+
+      .future-tab {
+        cursor: default;
+        border-style: dashed;
+        background: transparent;
+      }
+
+      .report {
+        padding-top: 34px;
+      }
+
+      .report[hidden] {
+        display: none;
+      }
+
+      .report-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 18px;
+        align-items: start;
+        border-radius: var(--radius);
+        background: var(--paper);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        padding: 26px;
+      }
+
+      .report-kicker {
+        color: var(--terracotta);
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .report-title {
+        margin: 10px 0 10px;
+        font-size: 36px;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      .report-lead {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .report-meta {
+        display: grid;
+        gap: 8px;
+        min-width: 168px;
+      }
+
+      .meta-pill {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--paper-soft);
+        padding: 10px 12px;
+      }
+
+      .meta-pill span {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .meta-pill strong {
+        display: block;
+        margin-top: 3px;
+        font-size: 15px;
+        white-space: nowrap;
+      }
+
+      .quick-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .quick-card,
+      .principle,
+      .note-card {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--paper);
+        padding: 16px;
+      }
+
+      .quick-card {
+        min-height: 156px;
+      }
+
+      .quick-card strong,
+      .principle strong,
+      .note-card strong {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .quick-card p,
+      .principle p,
+      .note-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .section {
+        scroll-margin-top: 92px;
+        padding: 34px 0 0;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 0 18px;
+        font-size: 25px;
+        line-height: 1.28;
+        white-space: nowrap;
+      }
+
+      .section-title::before {
+        content: "";
+        width: 32px;
+        height: 2px;
+        background: var(--terracotta);
+      }
+
+      .body-copy {
+        margin: 0 0 16px;
+        color: #3b403b;
+      }
+
+      .text-list {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .text-list li {
+        position: relative;
+        border-left: 3px solid var(--sage);
+        background: rgba(255, 255, 255, 0.68);
+        border-radius: 0 var(--radius) var(--radius) 0;
+        padding: 11px 14px 11px 16px;
+      }
+
+      .figure {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--paper);
+        box-shadow: 0 12px 28px rgba(48, 43, 35, 0.06);
+        margin: 18px 0;
+      }
+
+      .figure img {
+        width: 100%;
+        background: #fff;
+      }
+
+      .figure figcaption {
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 13px;
+        padding: 10px 14px;
+      }
+
+      .figure.compact img {
+        max-height: 420px;
+        object-fit: contain;
+      }
+
+      .figure-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--paper);
+        font-size: 14px;
+      }
+
+      .data-table th,
+      .data-table td {
+        border-bottom: 1px solid var(--line);
+        padding: 14px;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      .data-table th {
+        background: var(--sage-soft);
+        color: var(--sage);
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .data-table tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .data-table td + td,
+      .data-table th + th {
+        border-left: 1px solid var(--line);
+      }
+
+      .principle-grid,
+      .note-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .principle:nth-child(2n) {
+        background: var(--blue-soft);
+      }
+
+      .principle:nth-child(2n + 1) {
+        background: var(--terracotta-soft);
+      }
+
+      .note-grid.three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .note-card {
+        background: var(--paper-soft);
+      }
+
+      .plan {
+        border-left: 4px solid var(--gold);
+        border-radius: 0 var(--radius) var(--radius) 0;
+        background: #fffdf6;
+        padding: 16px 18px;
+      }
+
+      .plan p {
+        margin: 0;
+      }
+
+      .repo-footer {
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        margin-top: 44px;
+        padding-top: 22px;
+        font-size: 14px;
+      }
+
+      @media (max-width: 1040px) {
+        .shell {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          position: static;
+          max-height: none;
+          padding-right: 0;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .quick-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 760px) {
+        .topbar-inner,
+        .shell {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+
+        .topbar-inner {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .top-links {
+          justify-content: flex-start;
+        }
+
+        .hero-title {
+          font-size: 34px;
+        }
+
+        .report-head {
+          grid-template-columns: 1fr;
+          padding: 20px;
+        }
+
+        .report-title {
+          font-size: 29px;
+        }
+
+        .snapshot,
+        .quick-grid,
+        .figure-grid,
+        .principle-grid,
+        .note-grid,
+        .note-grid.three {
+          grid-template-columns: 1fr;
+        }
+
+        .snapshot div + div {
+          border-left: 0;
+          border-top: 1px solid var(--line);
+        }
+
+        .data-table {
+          display: block;
+          overflow-x: auto;
+          white-space: normal;
+        }
+      }
+
+      @media (max-width: 460px) {
+        .hero-title {
+          font-size: 30px;
+        }
+
+        .side-title {
+          font-size: 25px;
+        }
+
+        .section-title {
+          font-size: 22px;
+        }
+
+        .week-tab,
+        .future-tab {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="progress" aria-hidden="true"></div>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="#week-3" aria-label="返回最新周报">
+          <span class="brand-mark">K</span>
+          <span>kalirali weekly update</span>
+        </a>
+        <nav class="top-links" aria-label="页面导航">
+          <a href="#week-1">第 1 周</a>
+          <a href="#week-2">第 2 周</a>
+          <a href="#week-3">第 3 周</a>
+          <a href="#future">后续更新</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="shell">
+      <aside class="sidebar" aria-label="周报导览">
+        <div class="side-panel">
+          <div class="eyebrow">2026 Internship Notes</div>
+          <h1 class="side-title">李慧珍周报</h1>
+          <p class="side-copy">每周沉淀工作主线、阶段成果、评测记录与产品调研。</p>
+
+          <nav class="toc" aria-label="周报目录">
+            <div class="toc-label">周报目录</div>
+            <div class="toc-list">
+              <a class="toc-link" data-week-target="week-1" href="#week-1">
+                <span>第 1 周</span><span>5.12-5.15</span>
+              </a>
+              <a class="toc-link" data-week-target="week-2" href="#week-2">
+                <span>第 2 周</span><span>5.18-5.22</span>
+              </a>
+              <a class="toc-link" data-week-target="week-3" href="#week-3">
+                <span>第 3 周</span><span>5.25-5.29</span>
+              </a>
+            </div>
+
+            <details open>
+              <summary>当前周报锚点</summary>
+              <div class="sub-list" data-section-links="week-1">
+                <a class="sub-link" href="#week-1-main">本周工作主线</a>
+                <a class="sub-link" href="#week-1-browser">QQ 浏览器体验</a>
+              </div>
+              <div class="sub-list" data-section-links="week-2" hidden>
+                <a class="sub-link" href="#week-2-overview">工作概览</a>
+                <a class="sub-link" href="#week-2-ppt">PPT 业务学习</a>
+                <a class="sub-link" href="#week-2-translation">网页翻译题集</a>
+              </div>
+              <div class="sub-list" data-section-links="week-3" hidden>
+                <a class="sub-link" href="#week-3-overview">工作总览</a>
+                <a class="sub-link" href="#week-3-eval">网页测评流程</a>
+                <a class="sub-link" href="#week-3-tolaria">Tolaria 调研</a>
+                <a class="sub-link" href="#week-3-caption">实时字幕评测</a>
+              </div>
+            </details>
+          </nav>
+
+          <div class="future-list" id="future">
+            <div class="future-item">第 4 周 · 预留</div>
+            <div class="future-item">第 5 周 · 预留</div>
+            <div class="future-item">第 6 周 · 预留</div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="content">
+        <section class="hero" aria-labelledby="page-title">
+          <div class="hero-grid">
+            <div>
+              <div class="eyebrow">weekly report archive</div>
+              <h2 class="hero-title" id="page-title">李慧珍周报更新</h2>
+              <p class="hero-copy">
+                目前收录 3 周实习周报，围绕文件 AI、PPT 业务、网页翻译评测、Tolaria 产品调研和实时字幕翻译评测持续更新。
+              </p>
+            </div>
+            <div class="snapshot" aria-label="周报统计">
+              <div><strong>3</strong><span>已更新周报</span></div>
+              <div><strong>12</strong><span>图文素材</span></div>
+              <div><strong>8</strong><span>工作主题</span></div>
+            </div>
+          </div>
+
+          <div class="week-switch" role="tablist" aria-label="切换周报">
+            <button class="week-tab" type="button" data-week-target="week-1" role="tab" aria-controls="week-1">
+              第 1 周
+            </button>
+            <button class="week-tab" type="button" data-week-target="week-2" role="tab" aria-controls="week-2">
+              第 2 周
+            </button>
+            <button class="week-tab" type="button" data-week-target="week-3" role="tab" aria-controls="week-3">
+              第 3 周
+            </button>
+            <button class="future-tab" type="button" disabled>第 4 周 · 预留</button>
+            <button class="future-tab" type="button" disabled>第 5 周 · 预留</button>
+          </div>
+        </section>
+
+        <article class="report" id="week-1" data-week-report="week-1" hidden>
+          <header class="report-head">
+            <div>
+              <div class="report-kicker">第 1 周 · 5.12-5.15</div>
+              <h2 class="report-title">文件 AI 起步调研</h2>
+              <p class="report-lead">
+                本周先把文件 AI 的用户路径、能力层和体验目标拆清楚，再围绕 QQ 浏览器与竞品完成基础体验记录。
+              </p>
+            </div>
+            <div class="report-meta" aria-label="周报信息">
+              <div class="meta-pill"><span>主题</span><strong>文件 AI</strong></div>
+              <div class="meta-pill"><span>产出</span><strong>调研框架</strong></div>
+            </div>
+          </header>
+
+          <div class="quick-grid" id="week-1-main">
+            <div class="quick-card">
+              <strong>使用 QQ 浏览器</strong>
+              <p>跑通 PC 端文件打开、AI 助手、AI 工具箱和文件任务能力，重点看入口、完成度和闭环。</p>
+            </div>
+            <div class="quick-card">
+              <strong>调研竞品</strong>
+              <p>覆盖夸克、360AI、Edge、Chrome、腾讯文档、Atlas、Comet，记录体验亮点和能力差异。</p>
+            </div>
+            <div class="quick-card">
+              <strong>阅读资料</strong>
+              <p>结合官方文档、产品说明和实际下载体验，把文件场景 AI 能力拆成路径和框架。</p>
+            </div>
+            <div class="quick-card">
+              <strong>讨论学习</strong>
+              <p>与 mentor 和文件工作组对齐：核心不是炫 AI，而是让用户在文件里直接完成任务。</p>
+            </div>
+          </div>
+
+          <section class="section">
+            <h3 class="section-title">本周工作主线</h3>
+            <figure class="figure compact">
+              <img src="assets/week-01-research-path.webp" alt="本周调研路径图" width="481" height="119" loading="lazy" />
+              <figcaption>图 1：本周调研路径，市场现状、QQ 浏览器自身、竞品体验、差距判断和能力方向。</figcaption>
+            </figure>
+            <p class="body-copy">
+              调研路径围绕“市场现状 → QQ 浏览器自身 → 竞品体验 → 差距判断 → 能力方向”展开。
+            </p>
+            <ul class="text-list">
+              <li>从用户路径看：入口发现、文件打开、AI 理解、AI 处理、结果导出或协作，再到再次使用。</li>
+              <li>从能力层看：AI 阅读、划重点、高频垂类助手、AI 生成、格式转换、协作沉淀和多文件 Agent。</li>
+              <li>从体验目标看：不是“有 AI 按钮”就够了，而是打开文件后能不能直接完成一个具体任务。</li>
+            </ul>
+          </section>
+
+          <section class="section" id="week-1-browser">
+            <h3 class="section-title">QQ 浏览器体验记录</h3>
+            <figure class="figure compact">
+              <img src="assets/week-01-browser-logic.webp" alt="QQ 浏览器文件 AI 两条使用逻辑" width="467" height="232" loading="lazy" />
+              <figcaption>图 2：基于 QQ 浏览器体验出的两条使用逻辑。</figcaption>
+            </figure>
+            <p class="body-copy">
+              文件 AI 的本质应统一成“基于文件，用 AI 处理内容”。入口可以是打开文件后找 AI，也可以是先找 AI
+              工具再上传文件，但用户感知上第一套逻辑更自然。
+            </p>
+            <ul class="text-list">
+              <li>QQ 浏览器已具备 AI 助手、AI 侧边栏、网页总结、翻译、文档转换和 PPT 生成等基础能力。</li>
+              <li>这些能力与打开文件场景结合还不够深，用户需要先知道“去哪里找”。</li>
+              <li>文件查看器适合承接微信、QQ、本地系统的文件打开入口，但 AI 辅助编辑和局部追问仍有提升空间。</li>
+              <li>更合适的方向是按文件格式组织任务，例如 PDF 速读、Excel 统计、简历优化、票据识别和合同审阅。</li>
+            </ul>
+            <figure class="figure">
+              <img src="assets/week-01-ai-file-overview.webp" alt="文件 AI 能力整理截图" width="1800" height="1015" loading="lazy" />
+              <figcaption>补充视图：文件 AI 能力与竞品信息整理。</figcaption>
+            </figure>
+          </section>
+        </article>
+
+        <article class="report" id="week-2" data-week-report="week-2" hidden>
+          <header class="report-head">
+            <div>
+              <div class="report-kicker">第 2 周 · 5.18-5.22</div>
+              <h2 class="report-title">PPT 业务与评测题集</h2>
+              <p class="report-lead">
+                本周重点理解 AI PPT 生成链路，拆解 ChatGPT for PPT 体验，并把文件 AI 调研反馈转化为下一轮修改原则。
+              </p>
+            </div>
+            <div class="report-meta" aria-label="周报信息">
+              <div class="meta-pill"><span>主题</span><strong>PPT / 翻译</strong></div>
+              <div class="meta-pill"><span>产出</span><strong>题集 130 条</strong></div>
+            </div>
+          </header>
+
+          <section class="section" id="week-2-overview">
+            <h3 class="section-title">本周工作概览</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>工作方向</th>
+                  <th>关键动作</th>
+                  <th>主要产出</th>
+                  <th>当前状态</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>PPT 业务学习</td>
+                  <td>学习 PPT 业务规划、AI PPT 生成路径与产品知识；分享 ChatGPT for PPT 体验。</td>
+                  <td>形成对输入、结构、资源、渲染、导出与编辑链路的初步理解。</td>
+                  <td>阶段学习</td>
+                </tr>
+                <tr>
+                  <td>文件 AI 调研</td>
+                  <td>输出 QQ 浏览器文件 AI 调研阶段成果，并与 mentor、颖姐讨论汇报。</td>
+                  <td>获得后续修改方向：贴合文件 AI 场景，关注用户触达、AI 能力、AI 使用流程。</td>
+                  <td>修改深化</td>
+                </tr>
+                <tr>
+                  <td>网页翻译评测</td>
+                  <td>根据网页评测需求制作新旧翻译模型对比评测题集。</td>
+                  <td>形成含 URL 样本、题型、评分维度和记录字段的可执行题集。</td>
+                  <td>题集已产出</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="section" id="week-2-ppt">
+            <h3 class="section-title">PPT 业务学习</h3>
+            <ul class="text-list">
+              <li>业务理解：PPT 不只是导出格式，更是浏览器承接“搜资料、组织内容、生成表达、二次编辑”的工作场景。</li>
+              <li>需求理解：PC 端更偏工作台和专业产出，移动端更偏随手创作、一键生成和便捷分享。</li>
+              <li>链路理解：生成流程可拆成大纲生成、结构分配、结构化内容填充、资源获取、最终渲染导出等步骤。</li>
+            </ul>
+            <figure class="figure">
+              <img src="assets/week-02-ppt-pipeline.webp" alt="AI PPT 从输入到产物的关键链路" width="1800" height="560" loading="lazy" />
+              <figcaption>图 1：AI PPT 从输入到产物的关键链路。</figcaption>
+            </figure>
+          </section>
+
+          <section class="section">
+            <h3 class="section-title">ChatGPT for PPT 体验拆解</h3>
+            <p class="body-copy">
+              体验过程中重点关注入口、引导、技能、任务进度和产物衔接。整体看，它不是只提供一个生成按钮，而是通过前置信息收集、应用关联、技能上传和任务进度展示，把用户从模糊需求引导到可执行任务。
+            </p>
+            <figure class="figure">
+              <img src="assets/week-02-chatgpt-ppt.webp" alt="ChatGPT for PPT 体验观察截图拼图" width="1800" height="1833" loading="lazy" />
+              <figcaption>图 2：ChatGPT for PPT 体验观察截图拼图。</figcaption>
+            </figure>
+          </section>
+
+          <section class="section">
+            <h3 class="section-title">文件 AI 调研反馈</h3>
+            <p class="body-copy">本周输出了 QQ 浏览器文件 AI 调研阶段成果，并与 mentor、颖姐进行讨论汇报。讨论后明确了修改方向。</p>
+            <div class="principle-grid">
+              <div class="principle"><strong>场景优先</strong><p>先明确用户在浏览器里遇到什么文件任务。</p></div>
+              <div class="principle"><strong>触达清晰</strong><p>说明 AI 入口如何出现、是否降低使用门槛。</p></div>
+              <div class="principle"><strong>能力贴合</strong><p>区分理解、问答、处理、生成、转换等能力在场景中的作用。</p></div>
+              <div class="principle"><strong>流程闭环</strong><p>关注打开、使用、保存、复用的完整路径。</p></div>
+            </div>
+          </section>
+
+          <section class="section" id="week-2-translation">
+            <h3 class="section-title">网页翻译评测题集建设</h3>
+            <p class="body-copy">
+              根据网页翻译新旧模型对比评测需求，本周制作了一份可直接用于测评的网页翻译评测题集，重点保证样本覆盖、题目均衡、评分标准明确。
+            </p>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>URL 样本</th>
+                  <th>题型设计</th>
+                  <th>题目总量</th>
+                  <th>评分维度</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>26 个</td>
+                  <td>5 类</td>
+                  <td>130 条</td>
+                  <td>准确性 / 流畅性 / 场景适配</td>
+                </tr>
+              </tbody>
+            </table>
+            <figure class="figure">
+              <img src="assets/week-02-translation-dataset.webp" alt="网页翻译题集领域覆盖与规模" width="1800" height="720" loading="lazy" />
+              <figcaption>图 3：网页翻译题集领域覆盖与规模。</figcaption>
+            </figure>
+            <div class="plan">
+              <p>下周计划：继续修改文件 AI 调研材料，补充 PDF、PPT、Word/网页转文档等典型场景链路。</p>
+            </div>
+          </section>
+        </article>
+
+        <article class="report" id="week-3" data-week-report="week-3">
+          <header class="report-head">
+            <div>
+              <div class="report-kicker">第 3 周 · 5.25-5.29</div>
+              <h2 class="report-title">评测流程与产品调研</h2>
+              <p class="report-lead">
+                本周学习网页翻译评测流程，完成 Tolaria 产品调研和 HTML 速览，并协作完成视频实时字幕翻译评测。
+              </p>
+            </div>
+            <div class="report-meta" aria-label="周报信息">
+              <div class="meta-pill"><span>主题</span><strong>评测 / 调研</strong></div>
+              <div class="meta-pill"><span>产出</span><strong>Tolaria 报告</strong></div>
+            </div>
+          </header>
+
+          <section class="section" id="week-3-overview">
+            <h3 class="section-title">本周工作总览</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>工作方向</th>
+                  <th>本周动作</th>
+                  <th>已完成产出</th>
+                  <th>个人收获</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>网页测评流程</td>
+                  <td>对接相关同学，学习网页翻译评测方式、工具使用、样本处理和结果记录方式。</td>
+                  <td>理解网页评测从样本抽取、模型调用到人工对比的基础链路。</td>
+                  <td>开始建立评测意识：样本有效性、结果可复测、问题可定位。</td>
+                </tr>
+                <tr>
+                  <td>Tolaria 产品调研</td>
+                  <td>调研开源笔记工具 Tolaria，拆解定位、功能、技术框架、Agent 协作与 Obsidian 对比。</td>
+                  <td>完成一份完整调研报告和一份网页速览 HTML。</td>
+                  <td>理解 AI Agent 时代知识库产品的关键：文件可读写、变更可追踪、关系可结构化。</td>
+                </tr>
+                <tr>
+                  <td>视频实时字幕翻译评测</td>
+                  <td>与字幕翻译相关同学协作，完成所需评测工作。</td>
+                  <td>完成实时字幕翻译评测任务，并沉淀部分评测关注点。</td>
+                  <td>进一步理解实时场景下不仅看准确性，也看断句、可读性和场景适配。</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="section" id="week-3-eval">
+            <h3 class="section-title">学习网页测评流程</h3>
+            <p class="body-copy">
+              本周通过与相关同学对接，学习网页翻译评测的基本方式和工具使用，记录接口如何调用，并理解有效评测集如何保证样本可打开、内容可抽取、题目可复测、结果可对比。
+            </p>
+            <figure class="figure">
+              <img src="assets/week-03-web-evaluation-flow.webp" alt="网页翻译评测流程学习沉淀" width="1800" height="700" loading="lazy" />
+              <figcaption>图：网页翻译评测流程学习沉淀。</figcaption>
+            </figure>
+            <div class="note-grid">
+              <div class="note-card"><strong>样本有效性</strong><p>避免拒绝访问、登录门槛、纯动态渲染导致的抽取失败。</p></div>
+              <div class="note-card"><strong>工具链意识</strong><p>评测不是单次翻译，而是 URL 样本、内容抽取、模型调用、结果记录到人工判定的一整套流程。</p></div>
+              <div class="note-card"><strong>评分标准意识</strong><p>重点关注准确性、流畅性、场景适配，同时记录格式异常、专有名词错误和上下文断裂。</p></div>
+              <div class="note-card"><strong>可复测意识</strong><p>问题样本需要保留 URL、输入文本、模型输出和人工备注，方便后续复核。</p></div>
+            </div>
+          </section>
+
+          <section class="section" id="week-3-tolaria">
+            <h3 class="section-title">Tolaria 产品调研</h3>
+            <p class="body-copy">
+              本周重点调研开源笔记工具 Tolaria，并输出完整调研报告和网页速览 HTML。调研重点在于它如何把本地 Markdown、Git 版本控制和 AI Agent 读写能力整合成一套默认知识库工作流。
+            </p>
+            <figure class="figure">
+              <img src="assets/week-03-tolaria-model.webp" alt="Tolaria 产品逻辑理解" width="1800" height="850" loading="lazy" />
+              <figcaption>图：Tolaria 产品逻辑理解。</figcaption>
+            </figure>
+            <div class="note-grid three">
+              <div class="note-card"><strong>一句话定位</strong><p>本地 Markdown + Git 为底座，面向 AI Agent 协作的跨平台知识库桌面应用。</p></div>
+              <div class="note-card"><strong>核心优势</strong><p>更适合“AI 可读、可写、可追踪”的本地知识库工作台。</p></div>
+              <div class="note-card"><strong>当前限制</strong><p>生态成熟度、插件丰富度和新手友好度仍弱于 Obsidian，搜索仍偏关键词检索。</p></div>
+            </div>
+            <div class="figure-grid">
+              <figure class="figure">
+                <img src="assets/week-03-tolaria-workbench.webp" alt="Tolaria 主界面分区与工作台结构" width="1800" height="1125" loading="lazy" />
+                <figcaption>图：Tolaria 主界面分区与工作台结构。</figcaption>
+              </figure>
+              <figure class="figure">
+                <img src="assets/week-03-ai-sidebar.webp" alt="Tolaria AI 侧边栏与 Agent 协作入口" width="1800" height="1130" loading="lazy" />
+                <figcaption>图：Tolaria AI 侧边栏与 Agent 协作入口。</figcaption>
+              </figure>
+            </div>
+            <figure class="figure">
+              <img src="assets/week-03-properties.webp" alt="Tolaria 属性面板与关系字段示意" width="1800" height="1130" loading="lazy" />
+              <figcaption>图：Tolaria 属性面板与关系字段示意。</figcaption>
+            </figure>
+          </section>
+
+          <section class="section" id="week-3-caption">
+            <h3 class="section-title">视频实时字幕翻译评测</h3>
+            <p class="body-copy">本周与视频实时字幕翻译相关同学一起完成所需评测工作，并沉淀了评测关注点。</p>
+            <figure class="figure">
+              <img src="assets/week-03-live-caption-eval.webp" alt="视频实时字幕翻译评测关注点示意" width="1800" height="760" loading="lazy" />
+              <figcaption>图：视频实时字幕翻译评测关注点示意。</figcaption>
+            </figure>
+            <table class="data-table">
+              <tbody>
+                <tr>
+                  <th>音频识别</th>
+                  <td>衡量 AI 字幕能否准确识别出视频原声中的音频。</td>
+                </tr>
+                <tr>
+                  <th>分句是否合理</th>
+                  <td>衡量 AI 字幕显示的句子是否分句合理，是否在合适的地方断句。</td>
+                </tr>
+                <tr>
+                  <th>翻译 - 准确性</th>
+                  <td>衡量 AI 翻译是否准确，包括信息是否遗漏或幻觉，是否正确翻译专业术语，上下文是否一致。</td>
+                </tr>
+                <tr>
+                  <th>翻译 - 流畅性</th>
+                  <td>衡量 AI 翻译是否符合目标语言的用语习惯，是否避免翻译腔或不流畅表达。</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="section">
+            <h3 class="section-title">本周收获与下周计划</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>能力沉淀</th>
+                  <th>具体体现</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>评测意识</td>
+                  <td>开始理解评测需要关注样本有效性、工具链稳定性、输出记录规范和可复测问题沉淀。</td>
+                </tr>
+                <tr>
+                  <td>产品调研</td>
+                  <td>从功能罗列转向产品定位、设计逻辑、技术实现、竞品差异和业务启发的结构化表达。</td>
+                </tr>
+                <tr>
+                  <td>表达与展示</td>
+                  <td>在完整调研报告之外，尝试用 HTML 速览承接快速阅读和汇报场景。</td>
+                </tr>
+                <tr>
+                  <td>业务理解</td>
+                  <td>网页翻译和字幕翻译都属于“翻译能力落地”，但具体场景对评测标准和用户体验要求不同。</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="plan" style="margin-top: 16px">
+              <p>下周计划：继续熟悉网页翻译评测流程，结合 Tolaria 调研思考“文件 AI + 资产沉淀 + Agent 工作流”的业务启发。</p>
+            </div>
+          </section>
+        </article>
+
+        <footer class="repo-footer">
+          <p>最后更新：2026-05-29 · 本页托管于 GitHub Pages。</p>
+        </footer>
+      </div>
+    </main>
+
+    <script>
+      const reports = Array.from(document.querySelectorAll("[data-week-report]"));
+      const tabs = Array.from(document.querySelectorAll("[data-week-target]"));
+      const sectionGroups = Array.from(document.querySelectorAll("[data-section-links]"));
+      const defaultWeek = "week-3";
+
+      function weekFromHash(hash) {
+        const clean = (hash || "").replace("#", "");
+        const match = clean.match(/^week-\d+/);
+        return match ? match[0] : defaultWeek;
+      }
+
+      function setActiveWeek(weekId) {
+        reports.forEach((report) => {
+          const active = report.id === weekId;
+          report.hidden = !active;
+          report.classList.toggle("is-active", active);
+        });
+
+        tabs.forEach((tab) => {
+          const active = tab.dataset.weekTarget === weekId;
+          tab.classList.toggle("is-active", active);
+          if (tab.getAttribute("role") === "tab") {
+            tab.setAttribute("aria-selected", String(active));
+            tab.setAttribute("tabindex", active ? "0" : "-1");
+          }
+        });
+
+        sectionGroups.forEach((group) => {
+          group.hidden = group.dataset.sectionLinks !== weekId;
+        });
+      }
+
+      function activateFromLocation() {
+        const weekId = weekFromHash(location.hash);
+        setActiveWeek(weekId);
+
+        if (location.hash) {
+          const scrollToHash = () => {
+            const target = document.getElementById(location.hash.slice(1));
+            if (target) {
+              const top = target.getBoundingClientRect().top + window.scrollY - 90;
+              window.scrollTo({ top: Math.max(top, 0), behavior: "auto" });
+            }
+          };
+
+          scrollToHash();
+          requestAnimationFrame(scrollToHash);
+          setTimeout(scrollToHash, 80);
+          setTimeout(scrollToHash, 420);
+          setTimeout(scrollToHash, 1200);
+        }
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", (event) => {
+          const weekId = tab.dataset.weekTarget;
+          if (!weekId) return;
+          if (tab.tagName === "BUTTON") {
+            event.preventDefault();
+          }
+          history.pushState(null, "", `#${weekId}`);
+          setActiveWeek(weekId);
+          document.getElementById(weekId)?.scrollIntoView({ block: "start" });
+        });
+      });
+
+      window.addEventListener("hashchange", activateFromLocation);
+      window.addEventListener("popstate", activateFromLocation);
+      window.addEventListener("scroll", () => {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+        document.documentElement.style.setProperty("--progress", `${Math.min(progress, 100)}%`);
+      }, { passive: true });
+
+      activateFromLocation();
+    </script>
+  </body>
+</html>
